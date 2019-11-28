@@ -1,0 +1,22 @@
+﻿<Window x:Class="ReminderApp.NewReminderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReminderApp"
+        mc:Ignorable="d"
+        Title="NewReminderWindow" Height="450" Width="400">
+    <StackPanel Margin="10">
+        <GroupBox Header="Add new Reminder" Margin="10">
+            <StackPanel>
+                <TextBlock Text="Short description"/>
+                <TextBox x:Name="txtShortDes" Margin="0,0,0,10"/>
+                <TextBlock Text="Long description"/>
+                <TextBox x:Name="txtLongDes" Margin="0,0,0,10" Height="100"/>
+                <TextBlock Text="Long description"/>
+                <DatePicker x:Name="dPDueDate" Margin="0,0,0,20" />
+                <Button x:Name="btnSaveReminder" Content="Save" Click="btnSaveReminder_Click"/>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
+</Window>

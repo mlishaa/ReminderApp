@@ -1,0 +1,30 @@
+﻿<Window x:Class="ReminderApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReminderApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListBox x:Name="listShortDescription" Grid.Column="0" Grid.Row="0" MouseDoubleClick="listShortDescription_MouseDoubleClick"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="txtLongDescription" Grid.Column="1" Grid.Row="0"/>
+            <WrapPanel Grid.Column="0" Grid.Row="1" Background="DimGray">
+                <TextBlock Text="Date" HorizontalAlignment="Right" Margin="20,10,0,0"/>
+                <TextBox x:Name="DueDate" HorizontalAlignment="Right" Width="200" IsEnabled="False" Margin="20,10,0,0"/>
+                <Button x:Name="btnAddReminder" Content="Add Reminder" Width="200" Height="20" Margin="20,10,0,0"/>
+            </WrapPanel>
+        </Grid>
+        
+    </Grid>
+</Window>
