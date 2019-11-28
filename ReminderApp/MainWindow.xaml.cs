@@ -67,7 +67,11 @@ namespace ReminderApp
                 SqlCommand cmd = new SqlCommand(command, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 sda.Fill(sd, "short");
-                txtLongDescription.Text = sd.Tables["short"].Rows.ToString();
+                foreach (DataRow data in sd.Tables["short"].Rows)
+                {
+                    txtLongDescription.Text = (data["LongDescription"].ToString());
+
+                }
             }
         }
     }
