@@ -22,7 +22,7 @@
             <WrapPanel Grid.Column="0" Grid.Row="1" Background="DimGray">
                 <TextBlock Text="Date" HorizontalAlignment="Right" Margin="20,10,0,0"/>
                 <TextBox x:Name="DueDate" HorizontalAlignment="Right" Width="200" IsEnabled="False" Margin="20,10,0,0"/>
-                <Button x:Name="btnAddReminder" Content="Add Reminder" Width="200" Height="20" Margin="20,10,0,0"/>
+                <Button x:Name="btnAddReminder" Content="Add Reminder" Width="200" Height="20" Margin="20,10,0,0" Click="btnAddReminder_Click"/>
             </WrapPanel>
         </Grid>
         
