@@ -60,7 +60,7 @@ namespace ReminderApp
 
             string getLong = listShortDescription.SelectedItem.ToString();
 
-            string command = @"select LongDescription from Reminders where Name like '" + getLong + "' ";
+            string command = @"select * from Reminders where Name like '" + getLong + "' ";
             DataSet sd = new DataSet();
             using (SqlConnection con = new SqlConnection(connectionDB))
             {
@@ -70,9 +70,18 @@ namespace ReminderApp
                 foreach (DataRow data in sd.Tables["short"].Rows)
                 {
                     txtLongDescription.Text = (data["LongDescription"].ToString());
+                    DueDate.Text= (data["DueDate"].ToString());
+
 
                 }
             }
+        }
+
+        private void btnAddReminder_Click(object sender, RoutedEventArgs e)
+        {
+            NewReminderWindow newReminder = new NewReminderWindow();
+            newReminder.Show();
+
         }
     }
 }
