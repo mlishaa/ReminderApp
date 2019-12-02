@@ -6,13 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace ReminderApp
 {
@@ -23,79 +17,79 @@ namespace ReminderApp
     {
         private string connectionDB = ConfigurationManager.ConnectionStrings["ReminderApp.Properties.Settings.DBReminderConnectionString"].ConnectionString;
 
+        bool isNew;
+        public Reminder newReminder;
         public NewReminderWindow()
         {
             InitializeComponent();
+            isNew = true;
+            newReminder = new Reminder();
+            
+        }
+
+        public NewReminderWindow(Reminder EditedReminder)
+        {
+            InitializeComponent();
+            isNew = false;
+            newReminder = EditedReminder;
+            LoadReminderInfo();
+            btnSaveReminder.Content = "Modifiy";
         }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public void LoadReminderInfo()
+        {
+            txtShortDes.Text = newReminder.ShortDes;
+            txtLongDes.Text = newReminder.LongDes;
+            dPDueDate.SelectedDate = newReminder.DueDate;
+        }
 
 
 
 
         private void btnSaveReminder_Click(object sender, RoutedEventArgs e)
         {
+            if(isNew)
             try
             {
                 if (CollectTableDate())
                 {
-                    string command = @"INSERT INTO Reminders(Name,LongDescription,DueDate) VALUES('" + txtShortDes.Text + @"','" + txtLongDes.Text + @"','" + dPDueDate.SelectedDate.Value + @"')";
-                    SqlConnection con = new SqlConnection();
-                    con.ConnectionString = ConfigurationManager.ConnectionStrings["ReminderApp.Properties.Settings.DBReminderConnectionString"].ConnectionString;
+                    newReminder.ShortDes = txtShortDes.Text;
+                    newReminder.LongDes = txtLongDes.Text;
+                    newReminder.DueDate = dPDueDate.SelectedDate.Value;
 
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "INSERT INTO [dbo].[Reminders](Name,LongDescription,DueDate) VALUES(@sd,@ld,@d)";
-                    cmd.Parameters.AddWithValue("@sd", txtShortDes.Text);
-                    cmd.Parameters.AddWithValue("@ld", txtLongDes.Text);
-                    cmd.Parameters.AddWithValue("@d", dPDueDate.SelectedDate.Value);
-                    cmd.Connection = con;
-                    int a = cmd.ExecuteNonQuery();
-                    if (a == 1)
-                    {
-                        MessageBox.Show("yes");
-                    }
-                    con.Close();
-
+                  
+                    this.DialogResult = true;
+                   
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            // here if it's not new and there's something changed in the information
+
+
+            // else do nothing
         }
 
         private bool CollectTableDate()
         {
+            StringBuilder msg = new StringBuilder();
             if (string.IsNullOrEmpty(txtShortDes.Text)
                 || string.IsNullOrEmpty(txtLongDes.Text) ||
                 string.IsNullOrEmpty(dPDueDate.SelectedDate.ToString()))
             {
+                MessageBox.Show("Remindder description is not compelete","Info",MessageBoxButton.OK,MessageBoxImage.Exclamation);
                 return false;
             }
             else
                 return true;
         }
+
+      
     }
 
  }

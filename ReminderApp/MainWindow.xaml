@@ -11,8 +11,11 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
-        <ListBox x:Name="listShortDescription" Grid.Column="0" Grid.Row="0" MouseDoubleClick="listShortDescription_MouseDoubleClick"/>
+
+        <ListBox x:Name="listShortDescription" Grid.Column="0" Grid.Row="0"  MouseRightButtonDown="listShortDescription_MouseRightButtonDown" MouseDoubleClick="listShortDescription_MouseDoubleClick">
+      
+        </ListBox>
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="12*"/>
@@ -22,7 +25,9 @@
             <WrapPanel Grid.Column="0" Grid.Row="1" Background="DimGray">
                 <TextBlock Text="Date" HorizontalAlignment="Right" Margin="20,10,0,0"/>
                 <TextBox x:Name="DueDate" HorizontalAlignment="Right" Width="200" IsEnabled="False" Margin="20,10,0,0"/>
-                <Button x:Name="btnAddReminder" Content="Add Reminder" Width="200" Height="20" Margin="20,10,0,0" Click="btnAddReminder_Click"/>
+                <Button x:Name="btnAddReminder" Content="Add Reminder" Width="100" Height="20" Margin="20,10,0,0" Click="btnAddReminder_Click"/>
+                <Button x:Name="btnUpdate" Content="Edit task" Width="100" Height="20" Margin="20,10,0,0" IsEnabled="false" Click="btnUpdate_Click_1"/>
+
             </WrapPanel>
         </Grid>
         
